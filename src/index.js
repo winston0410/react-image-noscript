@@ -1,15 +1,16 @@
 import React from 'react'
+import {
+  defaultWhenEmpty
+} from '@blackblock/common-utilities'
 
 const withNoScript = (Component) => ({ ...attr }) => {
-  const clonedComponent = React.cloneElement(Component, { ...attr })
-
-  // {clonedComponent}
+  const srcPath = defaultWhenEmpty(attr.src)(attr.dataSrc)
 
   return (
-    <React.Fragment {...attr}>
+    <React.Fragment>
       <Component {...attr}/>
       <noscript>
-        <Component {...attr}/>
+        <Component {...attr} src={srcPath}/>
       </noscript>
     </React.Fragment>
   )
