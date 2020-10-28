@@ -1,16 +1,18 @@
 import React from 'react'
 
-const NoscriptImage = (Component) => ({...attr}) => {
-  const clonedComponent = React.cloneElement(Component, {...attr})
+const withNoScript = (Component) => ({ ...attr }) => {
+  const clonedComponent = React.cloneElement(Component, { ...attr })
+
+  // {clonedComponent}
 
   return (
     <React.Fragment {...attr}>
       <Component {...attr}/>
       <noscript>
-        {clonedComponent}
+        <Component {...attr}/>
       </noscript>
     </React.Fragment>
   )
 }
 
-export default NoscriptImage
+export default withNoScript
